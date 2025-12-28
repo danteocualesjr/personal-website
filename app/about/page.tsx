@@ -112,6 +112,7 @@ export default function AboutPage() {
                 { href: '/blog', label: 'Read the Blog', icon: '📝' },
                 { href: '/portfolio', label: 'View Projects', icon: '💼' },
                 { href: '/books', label: 'Book Collection', icon: '📚' },
+                { href: '/fiction', label: 'Fiction & Writing', icon: '✍️' },
               ].map((link) => (
                 <Link
                   key={link.href}

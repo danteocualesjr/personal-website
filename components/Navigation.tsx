@@ -9,6 +9,7 @@ const navItems = [
   { href: '/blog', label: 'Blog' },
   { href: '/portfolio', label: 'Portfolio' },
   { href: '/books', label: 'Books' },
+  { href: '/fiction', label: 'Fiction' },
   { href: '/about', label: 'About' },
 ];
 

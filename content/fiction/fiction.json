@@ -1,0 +1,31 @@
+[
+  {
+    "id": "fiction-1",
+    "title": "The Last Light",
+    "author": "Your Name",
+    "type": "short-story",
+    "excerpt": "In a world where the sun never sets, one person discovers the beauty of darkness and the stories it holds.",
+    "published": "2024-01-20",
+    "status": "published",
+    "tags": ["fantasy", "speculative fiction", "light"],
+    "link": "#"
+  },
+  {
+    "id": "fiction-2",
+    "title": "Echoes of Tomorrow",
+    "type": "novel",
+    "excerpt": "A time-traveling adventure that explores the consequences of changing the past and the threads that connect all moments.",
+    "status": "in-progress",
+    "tags": ["science fiction", "time travel", "adventure"]
+  },
+  {
+    "id": "fiction-3",
+    "title": "Urban Reflections",
+    "type": "poetry",
+    "excerpt": "A collection of poems capturing the rhythm and soul of city life, from dawn to midnight.",
+    "published": "2024-02-15",
+    "status": "published",
+    "tags": ["poetry", "urban", "contemporary"]
+  }
+]
+
