@@ -14,32 +14,40 @@ export interface BlogPost {
 }
 
 export function getAllPosts(): BlogPost[] {
-  const fileNames = fs.readdirSync(contentDirectory);
-  const allPostsData = fileNames
-    .filter((name) => name.endsWith('.mdx'))
-    .map((fileName) => {
-      const slug = fileName.replace(/\.mdx$/, '');
-      const fullPath = path.join(contentDirectory, fileName);
-      const fileContents = fs.readFileSync(fullPath, 'utf8');
-      const { data, content } = matter(fileContents);
-
-      return {
-        slug,
-        title: data.title || '',
-        date: data.date || '',
-        excerpt: data.excerpt || '',
-        tags: data.tags || [],
-        content,
-      };
-    });
-
-  return allPostsData.sort((a, b) => {
-    if (a.date < b.date) {
-      return 1;
-    } else {
-      return -1;
+  try {
+    if (!fs.existsSync(contentDirectory)) {
+      return [];
     }
-  });
+    
+    const fileNames = fs.readdirSync(contentDirectory);
+    const allPostsData = fileNames
+      .filter((name) => name.endsWith('.mdx'))
+      .map((fileName) => {
+        const slug = fileName.replace(/\.mdx$/, '');
+        const fullPath = path.join(contentDirectory, fileName);
+        const fileContents = fs.readFileSync(fullPath, 'utf8');
+        const { data, content } = matter(fileContents);
+
+        return {
+          slug,
+          title: data.title || '',
+          date: data.date ? String(data.date) : '',
+          excerpt: data.excerpt || '',
+          tags: data.tags || [],
+          content,
+        };
+      });
+
+    return allPostsData.sort((a, b) => {
+      if (a.date < b.date) {
+        return 1;
+      } else {
+        return -1;
+      }
+    });
+  } catch {
+    return [];
+  }
 }
 
 export function getPostBySlug(slug: string): BlogPost | null {
@@ -51,7 +59,7 @@ export function getPostBySlug(slug: string): BlogPost | null {
     return {
       slug,
       title: data.title || '',
-      date: data.date || '',
+      date: data.date ? String(data.date) : '',
       excerpt: data.excerpt || '',
       tags: data.tags || [],
       content,
@@ -60,4 +68,3 @@ export function getPostBySlug(slug: string): BlogPost | null {
     return null;
   }
 }
-

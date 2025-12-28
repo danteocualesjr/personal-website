@@ -4,7 +4,10 @@ import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 
 export const metadata: Metadata = {
-  title: 'Personal Website',
+  title: {
+    default: 'Personal Website',
+    template: '%s | Personal Website',
+  },
   description: 'A personal website featuring blog, portfolio, books, and more.',
   openGraph: {
     title: 'Personal Website',
@@ -20,12 +23,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className="min-h-screen flex flex-col bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">
-        <Navigation />
-        <main className="flex-1">{children}</main>
-        <Footer />
+      <body className="min-h-screen flex flex-col bg-background text-foreground font-body">
+        <div className="fixed inset-0 bg-grid pointer-events-none" />
+        <div className="relative z-10 flex flex-col min-h-screen">
+          <Navigation />
+          <main className="flex-1">{children}</main>
+          <Footer />
+        </div>
       </body>
     </html>
   );
 }
-

@@ -10,30 +10,48 @@ export default function BlogCard({ post }: BlogCardProps) {
   const readTime = readingTime(post.content);
 
   return (
-    <Link href={`/blog/${post.slug}`}>
-      <article className="group bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-6 hover:shadow-lg transition-shadow">
-        <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-          {post.title}
-        </h2>
-        <p className="text-gray-600 dark:text-gray-400 mb-4 line-clamp-2">{post.excerpt}</p>
-        <div className="flex items-center justify-between text-sm text-gray-500 dark:text-gray-500">
-          <time dateTime={post.date}>{formatDate(post.date)}</time>
-          <span>{readTime} min read</span>
-        </div>
+    <Link href={`/blog/${post.slug}`} className="group block">
+      <article className="h-full bg-card border border-card-border rounded-2xl p-6 card-hover">
+        {/* Tags */}
         {post.tags.length > 0 && (
-          <div className="flex flex-wrap gap-2 mt-4">
-            {post.tags.map((tag) => (
-              <span
-                key={tag}
-                className="px-2 py-1 text-xs bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded"
-              >
+          <div className="flex flex-wrap gap-2 mb-4">
+            {post.tags.slice(0, 2).map((tag) => (
+              <span key={tag} className="tag">
                 {tag}
               </span>
             ))}
           </div>
         )}
+
+        {/* Title */}
+        <h2 className="font-display text-xl font-semibold mb-3 group-hover:text-accent transition-colors line-clamp-2">
+          {post.title}
+        </h2>
+
+        {/* Excerpt */}
+        <p className="text-muted mb-6 line-clamp-3 leading-relaxed">
+          {post.excerpt}
+        </p>
+
+        {/* Meta */}
+        <div className="flex items-center justify-between text-sm text-muted pt-4 border-t border-card-border">
+          <time dateTime={post.date}>{formatDate(post.date)}</time>
+          <span className="flex items-center gap-1">
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            {readTime} min
+          </span>
+        </div>
+
+        {/* Read more indicator */}
+        <div className="mt-4 flex items-center gap-2 text-accent opacity-0 group-hover:opacity-100 transition-opacity">
+          <span className="text-sm font-medium">Read article</span>
+          <svg className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+          </svg>
+        </div>
       </article>
     </Link>
   );
 }
-

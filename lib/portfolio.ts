@@ -17,6 +17,9 @@ export interface Project {
 
 export function getProjects(): Project[] {
   try {
+    if (!fs.existsSync(portfolioPath)) {
+      return [];
+    }
     const fileContents = fs.readFileSync(portfolioPath, 'utf8');
     return JSON.parse(fileContents);
   } catch {
@@ -31,4 +34,3 @@ export function getFeaturedProjects(): Project[] {
 export function getProjectsByCategory(category: string): Project[] {
   return getProjects().filter((project) => project.category === category);
 }
-

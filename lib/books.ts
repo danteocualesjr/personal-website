@@ -16,6 +16,9 @@ export interface Book {
 
 export function getBooks(): Book[] {
   try {
+    if (!fs.existsSync(booksPath)) {
+      return [];
+    }
     const fileContents = fs.readFileSync(booksPath, 'utf8');
     return JSON.parse(fileContents);
   } catch {
@@ -26,4 +29,3 @@ export function getBooks(): Book[] {
 export function getBooksByStatus(status: Book['status']): Book[] {
   return getBooks().filter((book) => book.status === status);
 }
-

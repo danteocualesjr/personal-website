@@ -1,48 +1,81 @@
+import Link from 'next/link';
+
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-gray-50 dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div>
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">About</h3>
-            <p className="text-gray-600 dark:text-gray-400">
-              A personal website showcasing my work, thoughts, and interests.
+    <footer className="relative mt-20">
+      {/* Gradient divider */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-px bg-gradient-to-r from-transparent via-card-border to-transparent" />
+      
+      <div className="max-w-6xl mx-auto px-6 lg:px-8 py-16">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
+          {/* Brand */}
+          <div className="md:col-span-2">
+            <Link href="/" className="font-display text-2xl font-semibold">
+              Portfolio
+            </Link>
+            <p className="mt-4 text-muted max-w-sm leading-relaxed">
+              Exploring ideas through writing, building meaningful projects, and sharing discoveries along the way.
             </p>
           </div>
+
+          {/* Navigation */}
           <div>
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Quick Links</h3>
-            <ul className="space-y-2">
-              <li>
-                <a href="/blog" className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400">
-                  Blog
-                </a>
-              </li>
-              <li>
-                <a href="/portfolio" className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400">
-                  Portfolio
-                </a>
-              </li>
-              <li>
-                <a href="/books" className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400">
-                  Books
-                </a>
-              </li>
+            <h3 className="font-display text-sm font-semibold uppercase tracking-wider text-muted mb-4">
+              Navigate
+            </h3>
+            <ul className="space-y-3">
+              {['Blog', 'Portfolio', 'Books', 'About'].map((item) => (
+                <li key={item}>
+                  <Link
+                    href={`/${item.toLowerCase()}`}
+                    className="text-foreground/70 hover:text-accent transition-colors link-underline"
+                  >
+                    {item}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
+
+          {/* Connect */}
           <div>
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Connect</h3>
-            <p className="text-gray-600 dark:text-gray-400">
-              Feel free to reach out through the contact form on the About page.
-            </p>
+            <h3 className="font-display text-sm font-semibold uppercase tracking-wider text-muted mb-4">
+              Connect
+            </h3>
+            <ul className="space-y-3">
+              {[
+                { label: 'GitHub', href: '#' },
+                { label: 'Twitter', href: '#' },
+                { label: 'LinkedIn', href: '#' },
+                { label: 'Email', href: 'mailto:hello@example.com' },
+              ].map((item) => (
+                <li key={item.label}>
+                  <a
+                    href={item.href}
+                    className="text-foreground/70 hover:text-accent transition-colors link-underline"
+                    target={item.href.startsWith('http') ? '_blank' : undefined}
+                    rel={item.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                  >
+                    {item.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
-        <div className="mt-8 pt-8 border-t border-gray-200 dark:border-gray-800 text-center text-gray-600 dark:text-gray-400">
-          <p>&copy; {currentYear} All rights reserved.</p>
+
+        {/* Bottom bar */}
+        <div className="mt-16 pt-8 border-t border-card-border flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="text-sm text-muted">
+            &copy; {currentYear} All rights reserved.
+          </p>
+          <p className="text-sm text-muted">
+            Built with Next.js & Tailwind CSS
+          </p>
         </div>
       </div>
     </footer>
   );
 }
-
