@@ -1,0 +1,28 @@
+[
+  {
+    "id": "book-1",
+    "title": "The Pragmatic Programmer",
+    "author": "Andrew Hunt, David Thomas",
+    "status": "read",
+    "rating": 5,
+    "review": "A must-read for any software developer. Full of practical advice and timeless wisdom.",
+    "dateRead": "2024-01-10"
+  },
+  {
+    "id": "book-2",
+    "title": "Clean Code",
+    "author": "Robert C. Martin",
+    "status": "reading",
+    "rating": null,
+    "review": null
+  },
+  {
+    "id": "book-3",
+    "title": "Designing Data-Intensive Applications",
+    "author": "Martin Kleppmann",
+    "status": "want-to-read",
+    "rating": null,
+    "review": null
+  }
+]
+

@@ -1,0 +1,31 @@
+[
+  {
+    "id": "project-1",
+    "title": "Example Project",
+    "description": "This is an example project to showcase your portfolio. Replace this with your actual projects.",
+    "technologies": ["React", "TypeScript", "Next.js"],
+    "category": "Web Development",
+    "link": "https://example.com",
+    "github": "https://github.com/example",
+    "featured": true
+  },
+  {
+    "id": "project-2",
+    "title": "Another Project",
+    "description": "Another example project description. Add your own projects here.",
+    "technologies": ["Node.js", "Express", "MongoDB"],
+    "category": "Backend",
+    "github": "https://github.com/example",
+    "featured": true
+  },
+  {
+    "id": "project-3",
+    "title": "Mobile App",
+    "description": "An example mobile application project.",
+    "technologies": ["React Native", "TypeScript"],
+    "category": "Mobile",
+    "link": "https://example.com",
+    "featured": false
+  }
+]
+
