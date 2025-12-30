@@ -8,7 +8,7 @@ export default function Home() {
   return (
     <div className="max-w-2xl mx-auto px-6 py-16">
       {/* Name */}
-      <h1 className="text-3xl font-semibold mb-6">Your Name</h1>
+      <h1 className="text-3xl font-semibold mb-6">Dante O. Qualis, Jr.</h1>
 
       {/* Bio */}
       <div className="space-y-4 mb-12 text-[15px] leading-relaxed">
