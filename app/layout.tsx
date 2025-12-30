@@ -3,8 +3,8 @@ import './globals.css';
 
 export const metadata: Metadata = {
   title: {
-    default: 'Dante O. Qualis, Jr.',
-    template: '%s | Dante O. Qualis, Jr.',
+    default: 'Dante O. Cuales, Jr.',
+    template: '%s | Dante O. Cuales, Jr.',
   },
   description: 'Developer and writer.',
 };
