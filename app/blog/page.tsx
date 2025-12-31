@@ -11,12 +11,16 @@ export default function BlogPage() {
   const posts = getAllPosts();
 
   return (
-    <div className="max-w-2xl mx-auto px-6 py-16">
-      <Link href="/" className="text-muted hover:text-foreground mb-8 inline-block">
-        ← Back
+    <div>
+      <Link href="/" className="text-muted hover:text-ink mb-8 inline-block text-xs tracking-[0.18em] uppercase">
+        ← Home
       </Link>
-      
-      <h1 className="text-3xl font-semibold mb-12">Writing</h1>
+
+      <h1 className="font-serif text-4xl tracking-tight mb-3">Writing</h1>
+      <p className="text-muted text-sm mb-8">
+        Notes, essays, and small dispatches.
+      </p>
+      <div className="border-t border-rule mb-10" />
 
       {posts.length === 0 ? (
         <p className="text-muted">No posts yet.</p>
@@ -25,7 +29,7 @@ export default function BlogPage() {
           {posts.map((post) => (
             <article key={post.slug}>
               <Link href={`/blog/${post.slug}`} className="block group">
-                <h2 className="text-xl font-medium mb-2 group-hover:text-foreground">
+                <h2 className="font-serif text-xl font-medium mb-2 group-hover:text-ink">
                   {post.title}
                 </h2>
                 <time className="text-sm text-muted">

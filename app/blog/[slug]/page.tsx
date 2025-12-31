@@ -35,17 +35,19 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
   const components = useMDXComponents({});
 
   return (
-    <article className="max-w-2xl mx-auto px-6 py-16">
-      <Link href="/blog" className="text-muted hover:text-foreground mb-8 inline-block">
-        ← Back
+    <article>
+      <Link href="/blog" className="text-muted hover:text-ink mb-8 inline-block text-xs tracking-[0.18em] uppercase">
+        ← Writing
       </Link>
 
       <header className="mb-8">
-        <h1 className="text-3xl font-semibold mb-4">{post.title}</h1>
+        <h1 className="font-serif text-4xl tracking-tight mb-3">{post.title}</h1>
         <time className="text-sm text-muted">{formatDate(post.date)}</time>
       </header>
 
-      <div className="prose prose-sm max-w-none">
+      <div className="border-t border-rule mb-10" />
+
+      <div className="prose prose-sm max-w-none prose-headings:font-serif prose-a:text-ink prose-a:no-underline hover:prose-a:underline">
         <MDXRemote source={post.content} components={components} />
       </div>
     </article>

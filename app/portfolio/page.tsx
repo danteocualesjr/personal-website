@@ -10,12 +10,14 @@ export default function PortfolioPage() {
   const projects = getProjects();
 
   return (
-    <div className="max-w-2xl mx-auto px-6 py-16">
-      <Link href="/" className="text-muted hover:text-foreground mb-8 inline-block">
-        ← Back
+    <div>
+      <Link href="/" className="text-muted hover:text-ink mb-8 inline-block text-xs tracking-[0.18em] uppercase">
+        ← Home
       </Link>
-      
-      <h1 className="text-3xl font-semibold mb-12">Projects</h1>
+
+      <h1 className="font-serif text-4xl tracking-tight mb-3">Work</h1>
+      <p className="text-muted text-sm mb-8">A small list of things I’ve built.</p>
+      <div className="border-t border-rule mb-10" />
 
       {projects.length === 0 ? (
         <p className="text-muted">No projects yet.</p>
@@ -23,9 +25,9 @@ export default function PortfolioPage() {
         <div className="space-y-8">
           {projects.map((project) => (
             <div key={project.id}>
-              <h2 className="text-xl font-medium mb-2">
+              <h2 className="font-serif text-xl font-medium mb-2">
                 {project.link ? (
-                  <a href={project.link} target="_blank" rel="noopener noreferrer" className="hover:text-foreground">
+                  <a href={project.link} target="_blank" rel="noopener noreferrer" className="hover:text-ink">
                     {project.title}
                   </a>
                 ) : (

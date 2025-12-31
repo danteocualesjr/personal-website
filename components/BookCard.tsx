@@ -85,7 +85,7 @@ export default function BookCard({ book }: BookCardProps) {
           {/* Review excerpt */}
           {book.review && (
             <p className="text-sm text-muted line-clamp-2 leading-relaxed italic">
-              "{book.review}"
+              &ldquo;{book.review}&rdquo;
             </p>
           )}
 
