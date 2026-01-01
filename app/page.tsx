@@ -1,111 +1,116 @@
 import Link from 'next/link';
 import { getAllPosts } from '@/lib/mdx';
+import { formatDate } from '@/lib/utils';
 
 export default function Home() {
   const posts = getAllPosts();
-  const favoritePosts = posts.slice(0, 6);
+  const recentPosts = posts.slice(0, 3);
 
   return (
-    <div className="space-y-16">
-      {/* Hero Section */}
-      <section className="space-y-6">
-        <div>
-          <h1 className="font-serif text-5xl sm:text-6xl md:text-7xl leading-[1.05] tracking-tight mb-4">
+    <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
+      {/* Left Column - Main Content */}
+      <div className="lg:col-span-2 space-y-12">
+        {/* Name & Bio */}
+        <div className="space-y-6">
+          <h1 className="font-serif text-6xl sm:text-7xl md:text-8xl leading-[0.95] tracking-tight">
             Dante O. Cuales, Jr.
           </h1>
-          <p className="text-lg sm:text-xl text-muted max-w-2xl">
-            Developer and writer exploring the intersection of technology, creativity, and continuous learning.
+          <div className="space-y-4 text-lg leading-relaxed max-w-xl">
+            <p>
+              I&apos;m a developer and writer. I work at [Company] doing [what you do]. 
+              Previously, I worked at [Previous Company]. I&apos;ve been coding for [X] years 
+              and [other relevant experience].
+            </p>
+            <p>
+              My life&apos;s work is to make technology easy to understand and interesting 
+              to learn about. I&apos;m a [personal detail], [personal detail], and a 
+              [interest/hobby]. I last listened to [Song] by [Artist].
+            </p>
+          </div>
+        </div>
+
+        {/* Recent Posts */}
+        {recentPosts.length > 0 && (
+          <div>
+            <h2 className="text-xs uppercase tracking-[0.18em] text-muted mb-6">
+              Recent Writing
+            </h2>
+            <div className="space-y-6">
+              {recentPosts.map((post) => (
+                <article key={post.slug} className="group">
+                  <Link href={`/blog/${post.slug}`} className="block">
+                    <h3 className="text-xl font-medium mb-2 group-hover:text-ink transition-colors">
+                      {post.title}
+                    </h3>
+                    <time className="text-sm text-muted">
+                      {formatDate(post.date)}
+                    </time>
+                  </Link>
+                </article>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+
+      {/* Right Column - Navigation & Links */}
+      <div className="space-y-12">
+        {/* Navigation Card */}
+        <div className="border border-rule p-6 space-y-4">
+          <h2 className="text-xs uppercase tracking-[0.18em] text-muted">
+            Navigate
+          </h2>
+          <nav className="space-y-3">
+            <Link href="/blog" className="block hover:text-ink transition-colors">
+              Writing
+            </Link>
+            <Link href="/portfolio" className="block hover:text-ink transition-colors">
+              Projects
+            </Link>
+            <Link href="/books" className="block hover:text-ink transition-colors">
+              Books
+            </Link>
+            <Link href="/fiction" className="block hover:text-ink transition-colors">
+              Fiction
+            </Link>
+            <Link href="/about" className="block hover:text-ink transition-colors">
+              About
+            </Link>
+          </nav>
+        </div>
+
+        {/* Quick Links */}
+        <div className="space-y-4 text-sm">
+          <p>
+            You can{' '}
+            <Link href="/blog" className="hover:text-ink">
+              read my writing
+            </Link>
+            {' '}or{' '}
+            <Link href="/portfolio" className="hover:text-ink">
+              view my code
+            </Link>
+            .
+          </p>
+          <p>
+            I also{' '}
+            <Link href="/fiction" className="hover:text-ink">
+              write fiction
+            </Link>
+            {' '}and{' '}
+            <Link href="/books" className="hover:text-ink">
+              read books
+            </Link>
+            .
+          </p>
+          <p>
+            <Link href="/about" className="hover:text-ink">
+              Follow me online
+            </Link>
+            {' '}or reach out if interested.
           </p>
         </div>
-      </section>
-
-      {/* Quick Navigation */}
-      <section>
-        <nav className="flex flex-wrap gap-6 text-sm">
-          <Link href="/blog" className="hover:text-ink transition-colors">
-            Writing
-          </Link>
-          <Link href="/portfolio" className="hover:text-ink transition-colors">
-            Projects
-          </Link>
-          <Link href="/books" className="hover:text-ink transition-colors">
-            Books
-          </Link>
-          <Link href="/fiction" className="hover:text-ink transition-colors">
-            Fiction
-          </Link>
-          <Link href="/about" className="hover:text-ink transition-colors">
-            About
-          </Link>
-        </nav>
-      </section>
-
-      <div className="border-t border-rule" />
-
-      {/* Bio Section */}
-      <section className="space-y-4 text-[15px] leading-relaxed max-w-2xl">
-        <p>
-          I&apos;m a developer and writer. I work at [Company] doing [what you do]. 
-          Previously, I worked at [Previous Company]. I&apos;ve been coding for [X] years 
-          and [other relevant experience].
-        </p>
-        <p>
-          My life&apos;s work is to make technology easy to understand and interesting 
-          to learn about. I&apos;m a [personal detail], [personal detail], and a 
-          [interest/hobby]. I last listened to [Song] by [Artist].
-        </p>
-      </section>
-
-      {/* Favorite Writing */}
-      {favoritePosts.length > 0 && (
-        <section>
-          <h2 className="text-xs uppercase tracking-[0.18em] text-muted mb-6">
-            Favorite Writing
-          </h2>
-          <ul className="space-y-3 text-[15px]">
-            {favoritePosts.map((post) => (
-              <li key={post.slug}>
-                <Link 
-                  href={`/blog/${post.slug}`} 
-                  className="hover:text-ink transition-colors block"
-                >
-                  {post.title}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </section>
-      )}
-
-      {/* Contact/Links */}
-      <section className="text-[15px] space-y-2">
-        <p>
-          You can{' '}
-          <Link href="/blog" className="hover:text-ink">
-            read my writing
-          </Link>
-          {' '}or{' '}
-          <Link href="/portfolio" className="hover:text-ink">
-            view my code
-          </Link>
-          , or{' '}
-          <Link href="/about" className="hover:text-ink">
-            follow me online
-          </Link>
-          .
-        </p>
-        <p>
-          I also{' '}
-          <Link href="/fiction" className="hover:text-ink">
-            write fiction
-          </Link>
-          {' '}and{' '}
-          <Link href="/books" className="hover:text-ink">
-            read books
-          </Link>
-          . Reach out if interested.
-        </p>
-      </section>
+      </div>
     </div>
   );
 }
