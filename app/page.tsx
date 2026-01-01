@@ -4,18 +4,31 @@ import { formatDate } from '@/lib/utils';
 
 export default function Home() {
   const posts = getAllPosts();
-  const recentPosts = posts.slice(0, 3);
+  const favoritePosts = posts.slice(0, 4);
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
-      {/* Left Column - Main Content */}
-      <div className="lg:col-span-2 space-y-12">
-        {/* Name & Bio */}
-        <div className="space-y-6">
-          <h1 className="font-serif text-6xl sm:text-7xl md:text-8xl leading-[0.95] tracking-tight">
+    <div className="max-w-4xl mx-auto">
+      {/* Centered Hero */}
+      <div className="text-center mb-20 space-y-8">
+        <div>
+          <h1 className="font-serif text-7xl sm:text-8xl md:text-9xl leading-[0.9] tracking-tight mb-6">
             Dante O. Cuales, Jr.
           </h1>
-          <div className="space-y-4 text-lg leading-relaxed max-w-xl">
+          <div className="w-24 h-1 bg-ink mx-auto mb-8" />
+        </div>
+        <p className="text-xl sm:text-2xl text-muted max-w-2xl mx-auto leading-relaxed">
+          Developer and writer exploring the intersection of technology, creativity, and continuous learning.
+        </p>
+      </div>
+
+      {/* Main Content Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-20">
+        {/* Left: Bio */}
+        <div className="space-y-6">
+          <h2 className="text-xs uppercase tracking-[0.18em] text-muted mb-4">
+            About
+          </h2>
+          <div className="space-y-4 text-[15px] leading-relaxed">
             <p>
               I&apos;m a developer and writer. I work at [Company] doing [what you do]. 
               Previously, I worked at [Previous Company]. I&apos;ve been coding for [X] years 
@@ -29,87 +42,79 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Recent Posts */}
-        {recentPosts.length > 0 && (
-          <div>
-            <h2 className="text-xs uppercase tracking-[0.18em] text-muted mb-6">
-              Recent Writing
-            </h2>
-            <div className="space-y-6">
-              {recentPosts.map((post) => (
-                <article key={post.slug} className="group">
-                  <Link href={`/blog/${post.slug}`} className="block">
-                    <h3 className="text-xl font-medium mb-2 group-hover:text-ink transition-colors">
-                      {post.title}
-                    </h3>
-                    <time className="text-sm text-muted">
-                      {formatDate(post.date)}
-                    </time>
-                  </Link>
-                </article>
-              ))}
-            </div>
-          </div>
-        )}
-      </div>
-
-      {/* Right Column - Navigation & Links */}
-      <div className="space-y-12">
-        {/* Navigation Card */}
-        <div className="border border-rule p-6 space-y-4">
-          <h2 className="text-xs uppercase tracking-[0.18em] text-muted">
-            Navigate
+        {/* Right: Navigation */}
+        <div className="space-y-6">
+          <h2 className="text-xs uppercase tracking-[0.18em] text-muted mb-4">
+            Explore
           </h2>
-          <nav className="space-y-3">
-            <Link href="/blog" className="block hover:text-ink transition-colors">
-              Writing
+          <nav className="space-y-4">
+            <Link href="/blog" className="block text-lg hover:text-ink transition-colors">
+              → Writing
             </Link>
-            <Link href="/portfolio" className="block hover:text-ink transition-colors">
-              Projects
+            <Link href="/portfolio" className="block text-lg hover:text-ink transition-colors">
+              → Projects
             </Link>
-            <Link href="/books" className="block hover:text-ink transition-colors">
-              Books
+            <Link href="/books" className="block text-lg hover:text-ink transition-colors">
+              → Books
             </Link>
-            <Link href="/fiction" className="block hover:text-ink transition-colors">
-              Fiction
+            <Link href="/fiction" className="block text-lg hover:text-ink transition-colors">
+              → Fiction
             </Link>
-            <Link href="/about" className="block hover:text-ink transition-colors">
-              About
+            <Link href="/about" className="block text-lg hover:text-ink transition-colors">
+              → About
             </Link>
           </nav>
         </div>
+      </div>
 
-        {/* Quick Links */}
-        <div className="space-y-4 text-sm">
-          <p>
-            You can{' '}
-            <Link href="/blog" className="hover:text-ink">
-              read my writing
-            </Link>
-            {' '}or{' '}
-            <Link href="/portfolio" className="hover:text-ink">
-              view my code
-            </Link>
-            .
-          </p>
-          <p>
-            I also{' '}
-            <Link href="/fiction" className="hover:text-ink">
-              write fiction
-            </Link>
-            {' '}and{' '}
-            <Link href="/books" className="hover:text-ink">
-              read books
-            </Link>
-            .
-          </p>
-          <p>
-            <Link href="/about" className="hover:text-ink">
-              Follow me online
-            </Link>
-            {' '}or reach out if interested.
-          </p>
+      {/* Favorite Writing */}
+      {favoritePosts.length > 0 && (
+        <div className="border-t border-rule pt-12">
+          <h2 className="text-xs uppercase tracking-[0.18em] text-muted mb-8">
+            Favorite Writing
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+            {favoritePosts.map((post) => (
+              <article key={post.slug} className="group">
+                <Link href={`/blog/${post.slug}`} className="block">
+                  <h3 className="text-xl font-medium mb-2 group-hover:text-ink transition-colors">
+                    {post.title}
+                  </h3>
+                  <time className="text-sm text-muted">
+                    {formatDate(post.date)}
+                  </time>
+                </Link>
+              </article>
+            ))}
+          </div>
         </div>
+      )}
+
+      {/* Footer Links */}
+      <div className="border-t border-rule mt-12 pt-8 text-center text-sm text-muted">
+        <p>
+          You can{' '}
+          <Link href="/blog" className="hover:text-ink">
+            read my writing
+          </Link>
+          {' '}or{' '}
+          <Link href="/portfolio" className="hover:text-ink">
+            view my code
+          </Link>
+          . I also{' '}
+          <Link href="/fiction" className="hover:text-ink">
+            write fiction
+          </Link>
+          {' '}and{' '}
+          <Link href="/books" className="hover:text-ink">
+            read books
+          </Link>
+          .{' '}
+          <Link href="/about" className="hover:text-ink">
+            Reach out
+          </Link>
+          {' '}if interested.
+        </p>
       </div>
     </div>
   );
