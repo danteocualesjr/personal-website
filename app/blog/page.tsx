@@ -1,9 +1,8 @@
 import Link from 'next/link';
 import { getAllPosts } from '@/lib/mdx';
-import { formatDate } from '@/lib/utils';
 
 export const metadata = {
-  title: 'Blog',
+  title: 'Writing',
   description: 'Writing and thoughts.',
 };
 
@@ -11,34 +10,26 @@ export default function BlogPage() {
   const posts = getAllPosts();
 
   return (
-    <div>
-      <Link href="/" className="text-muted hover:text-ink mb-8 inline-block text-xs tracking-[0.18em] uppercase">
-        ← Home
-      </Link>
-
-      <h1 className="font-serif text-4xl tracking-tight mb-3">Writing</h1>
-      <p className="text-muted text-sm mb-8">
-        Notes, essays, and small dispatches.
-      </p>
-      <div className="border-t border-rule mb-10" />
-
+    <div className="max-w-2xl mx-auto px-6 py-16">
+      <h1 className="text-3xl font-semibold mb-6">Writing</h1>
+      
+      <p className="text-[15px] mb-4">By Dante O. Cuales, Jr.</p>
+      
       {posts.length === 0 ? (
-        <p className="text-muted">No posts yet.</p>
+        <p className="text-[15px] text-muted">No posts yet.</p>
       ) : (
-        <div className="space-y-8">
-          {posts.map((post) => (
-            <article key={post.slug}>
-              <Link href={`/blog/${post.slug}`} className="block group">
-                <h2 className="font-serif text-xl font-medium mb-2 group-hover:text-ink">
+        <>
+          <p className="text-[15px] mb-4">Here&apos;s a list of my writing:</p>
+          <ul className="space-y-2 text-[15px]">
+            {posts.map((post) => (
+              <li key={post.slug}>
+                <Link href={`/blog/${post.slug}`} className="hover:text-foreground">
                   {post.title}
-                </h2>
-                <time className="text-sm text-muted">
-                  {formatDate(post.date)}
-                </time>
-              </Link>
-            </article>
-          ))}
-        </div>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </>
       )}
     </div>
   );
