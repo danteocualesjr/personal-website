@@ -10,16 +10,9 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        paper: 'var(--paper)',
-        ink: 'var(--ink)',
+        background: 'var(--background)',
+        foreground: 'var(--foreground)',
         muted: 'var(--muted)',
-        rule: 'var(--rule)',
-        rust: 'var(--rust)',
-      },
-      fontFamily: {
-        serif: ['ui-serif', 'Georgia', 'Times New Roman', 'serif'],
-        sans: ['ui-sans-serif', 'system-ui', '-apple-system', 'Segoe UI', 'sans-serif'],
-        mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'monospace'],
       },
     },
   },
