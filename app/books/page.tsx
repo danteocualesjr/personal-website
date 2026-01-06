@@ -10,23 +10,21 @@ export default function BooksPage() {
   const books = getBooks();
 
   return (
-    <div>
-      <Link href="/" className="text-muted hover:text-ink mb-8 inline-block text-xs tracking-[0.18em] uppercase">
+    <div className="max-w-2xl mx-auto px-6 py-20">
+      <Link href="/" className="text-muted hover:text-foreground mb-8 inline-block transition-colors">
         ← Home
       </Link>
 
-      <h1 className="font-serif text-4xl tracking-tight mb-3">Books</h1>
-      <p className="text-muted text-sm mb-8">A shelf I keep coming back to.</p>
-      <div className="border-t border-rule mb-10" />
+      <h1 className="text-4xl sm:text-5xl font-semibold mb-8 leading-tight">Books</h1>
 
       {books.length === 0 ? (
-        <p className="text-muted">No books yet.</p>
+        <p className="text-base text-muted">No books yet.</p>
       ) : (
         <div className="space-y-6">
           {books.map((book) => (
             <div key={book.id}>
-              <h2 className="font-serif text-lg font-medium mb-1">{book.title}</h2>
-              <p className="text-muted text-sm">by {book.author}</p>
+              <h2 className="text-xl font-medium mb-1">{book.title}</h2>
+              <p className="text-base text-muted">by {book.author}</p>
               {book.rating && (
                 <p className="text-sm text-muted mt-1">{book.rating}/5</p>
               )}

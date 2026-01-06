@@ -7,16 +7,14 @@ export const metadata = {
 
 export default function AboutPage() {
   return (
-    <div>
-      <Link href="/" className="text-muted hover:text-ink mb-8 inline-block text-xs tracking-[0.18em] uppercase">
+    <div className="max-w-2xl mx-auto px-6 py-20">
+      <Link href="/" className="text-muted hover:text-foreground mb-8 inline-block transition-colors">
         ← Home
       </Link>
 
-      <h1 className="font-serif text-4xl tracking-tight mb-3">About</h1>
-      <p className="text-muted text-sm mb-8">A few lines, no mythology.</p>
-      <div className="border-t border-rule mb-10" />
+      <h1 className="text-4xl sm:text-5xl font-semibold mb-8 leading-tight">About</h1>
 
-      <div className="space-y-4 text-[15px] leading-relaxed">
+      <div className="space-y-5 text-base leading-relaxed">
         <p>
           More about me coming soon.
         </p>
