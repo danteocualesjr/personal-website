@@ -1,13 +1,13 @@
 import Link from 'next/link';
-import { getFiction } from '@/lib/fiction';
+import { getAllStories } from '@/lib/fiction-stories';
 
 export const metadata = {
   title: 'Fiction',
-  description: 'Creative writing.',
+  description: 'Short stories and creative writing.',
 };
 
 export default function FictionPage() {
-  const fiction = getFiction();
+  const stories = getAllStories();
 
   return (
     <div className="max-w-2xl mx-auto px-6 py-20">
@@ -16,36 +16,27 @@ export default function FictionPage() {
       </Link>
 
       <h1 className="text-4xl sm:text-5xl font-semibold mb-8 leading-tight">Fiction</h1>
+      
+      <p className="text-base mb-4">By Dante O. Cuales, Jr.</p>
 
-      {fiction.length === 0 ? (
-        <p className="text-base text-muted">No works yet.</p>
+      {stories.length === 0 ? (
+        <p className="text-base text-muted">No stories yet.</p>
       ) : (
-        <div className="space-y-6">
-          {fiction.map((item) => (
-            <div key={item.id}>
-              <h2 className="text-xl font-medium mb-1">
-                {item.link ? (
-                  <a 
-                    href={item.link} 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
-                    className="hover:text-foreground transition-colors"
-                  >
-                    {item.title}
-                  </a>
-                ) : (
-                  item.title
-                )}
-              </h2>
-              {item.author && (
-                <p className="text-base text-muted">by {item.author}</p>
-              )}
-              {item.excerpt && (
-                <p className="text-base text-muted mt-2 leading-relaxed">{item.excerpt}</p>
-              )}
-            </div>
-          ))}
-        </div>
+        <>
+          <p className="text-base mb-5">Here&apos;s a list of my stories:</p>
+          <ul className="space-y-3 text-base">
+            {stories.map((story) => (
+              <li key={story.slug}>
+                <Link 
+                  href={`/fiction/${story.slug}`} 
+                  className="hover:text-foreground transition-colors"
+                >
+                  {story.title}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </>
       )}
     </div>
   );
